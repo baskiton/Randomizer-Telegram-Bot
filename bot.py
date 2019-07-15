@@ -95,7 +95,12 @@ def get_message():
     return "!", 200
 
 
-if __name__ == "__main__":
+@server.route("/")
+def webhook():
     bot.remove_webhook()
     bot.set_webhook(url='https://%s/%s' % (my_domain, TOKEN))
+    return "!", 200
+
+
+if __name__ == "__main__":
     server.run(host="0.0.0.0", port=int(environ.get('PORT', 5000)))
